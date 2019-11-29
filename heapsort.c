@@ -25,7 +25,8 @@ static void _heapify_(int32_t a[],int32_t length,int32_t parent)
 		int32_t temp;
 		temp=a[child];
 		a[child] = a[parent];
-		a[parent] = a[temp];
+		a[parent] = temp;
+	
 		parent=child;
 		child = 2*parent;
 	}
@@ -50,10 +51,13 @@ Heap* heap_sort(Heap *heap)
 	for(int32_t i=heap->size;i>0;i--)
 	{
 		int32_t temp;
-		temp = heap->data[i];
-		heap->data[i] = heap->data[1];
-		heap->data[1] = temp;
+		temp = heap->data[1];
+		heap->data[1] = heap->data[i];
+		heap->data[i] = temp;
+		// printf("%d\n",i-1);
 		_heapify_(heap->data,i-1,1); 
-	}
+	} 
+	//{30,10,20,90,15,40};
+	
 return heap;
 }
